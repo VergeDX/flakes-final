@@ -18,7 +18,8 @@
     ];
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Asia/Shanghai";
+  time.hardwareClockInLocalTime = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -96,4 +97,3 @@
   system.stateVersion = "21.11"; # Did you read the comment?
 
 }
-
