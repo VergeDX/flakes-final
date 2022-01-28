@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -14,36 +15,40 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "none";
+    {
+      device = "none";
       fsType = "tmpfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F80E-3594";
+    {
+      device = "/dev/disk/by-uuid/F80E-3594";
       fsType = "vfat";
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/41407c27-1829-4cc4-bf34-d4167dabe1e1";
+    {
+      device = "/dev/disk/by-uuid/41407c27-1829-4cc4-bf34-d4167dabe1e1";
       fsType = "btrfs";
       options = [ "subvol=nix" ];
     };
 
   fileSystems."/persistent" =
-    { device = "/dev/disk/by-uuid/41407c27-1829-4cc4-bf34-d4167dabe1e1";
+    {
+      device = "/dev/disk/by-uuid/41407c27-1829-4cc4-bf34-d4167dabe1e1";
       fsType = "btrfs";
       options = [ "subvol=persistent" ];
     };
 
   fileSystems."/etc/nixos" =
-    { device = "/persistent/persistent/Projects/flakes-final";
+    {
+      device = "/persistent/persistent/Projects/flakes-final";
       fsType = "none";
       options = [ "bind" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/1b07ef58-fa1b-4e5e-a394-7a07a9229f07"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/1b07ef58-fa1b-4e5e-a394-7a07a9229f07"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
