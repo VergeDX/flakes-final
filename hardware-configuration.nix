@@ -31,12 +31,6 @@
     options = [ "subvol=persistent" "noatime" "compress-force=zstd" ];
   };
 
-  fileSystems."/etc/nixos" = {
-    device = "/persistent/Projects/flakes-final";
-    fsType = "none";
-    options = [ "bind" ];
-  };
-
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
