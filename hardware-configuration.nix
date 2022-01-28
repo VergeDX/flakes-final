@@ -14,17 +14,10 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    {
-      fsType = "tmpfs";
-      options = [ "defaults" "size=2G" "mode=755" ];
-    };
-
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/F80E-3594";
-      fsType = "vfat";
-    };
+  fileSystems = {
+    "/" = { fsType = "tmpfs"; options = [ "defaults" "size=2G" "mode=755" ]; };
+    "/boot" = { device = "/dev/disk/by-uuid/F80E-3594"; fsType = "vfat"; };
+  };
 
   fileSystems."/nix" =
     {
