@@ -16,8 +16,8 @@
 
   fileSystems."/" =
     {
-      device = "none";
       fsType = "tmpfs";
+      options = [ "defaults" "size=2G" "mode=755" ];
     };
 
   fileSystems."/boot" =
@@ -30,14 +30,14 @@
     {
       device = "/dev/disk/by-uuid/41407c27-1829-4cc4-bf34-d4167dabe1e1";
       fsType = "btrfs";
-      options = [ "subvol=nix" ];
+      options = [ "subvol=nix" "noatime" "compress-force=zstd" ];
     };
 
   fileSystems."/persistent" =
     {
       device = "/dev/disk/by-uuid/41407c27-1829-4cc4-bf34-d4167dabe1e1";
       fsType = "btrfs";
-      options = [ "subvol=persistent" ];
+      options = [ "subvol=persistent" "noatime" "compress-force=zstd" ];
     };
 
   fileSystems."/etc/nixos" =
